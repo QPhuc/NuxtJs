@@ -12,6 +12,9 @@
           <li>
             <nuxt-link to="/profile">Profile</nuxt-link>
           </li>
+          <li>
+            <nuxt-link to="/settings">Setting</nuxt-link>
+          </li>
         </ul>
       </nav>
     </div>
