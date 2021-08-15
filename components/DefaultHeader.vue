@@ -52,4 +52,8 @@ ul {
 .header a:hover {
   text-decoration: underline;
 }
+
+.header a.nuxt-link-exact-active {
+  color: red;
+}
 </style>
