@@ -4,40 +4,46 @@
       <h1>List of your decks:</h1>
       <ul class="decks-list">
         <li>
-          <div class="card deck-card">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU"
-              alt="Thumbnail card"
-            />
-            <div class="card_body">
-              <h3>Title card</h3>
-              <p>Description card</p>
+          <nuxt-link class="deck" to="/decks/1">
+            <div class="card deck-card">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU"
+                alt="Thumbnail card"
+              />
+              <div class="card_body">
+                <h3>Title card</h3>
+                <p>Description card</p>
+              </div>
             </div>
-          </div>
+          </nuxt-link>
         </li>
         <li>
-          <div class="card deck-card">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU"
-              alt="Thumbnail card"
-            />
-            <div class="card_body">
-              <h3>Title card</h3>
-              <p>Description card</p>
+          <nuxt-link class="deck" to="/decks/2">
+            <div class="card deck-card">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU"
+                alt="Thumbnail card"
+              />
+              <div class="card_body">
+                <h3>Title card</h3>
+                <p>Description card</p>
+              </div>
             </div>
-          </div>
+          </nuxt-link>
         </li>
         <li>
-          <div class="card deck-card">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU"
-              alt="Thumbnail card"
-            />
-            <div class="card_body">
-              <h3>Title card</h3>
-              <p>Description card</p>
+          <nuxt-link class="deck" to="/decks/3">
+            <div class="card deck-card">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU"
+                alt="Thumbnail card"
+              />
+              <div class="card_body">
+                <h3>Title card</h3>
+                <p>Description card</p>
+              </div>
             </div>
-          </div>
+          </nuxt-link>
         </li>
       </ul>
     </div>
@@ -61,10 +67,8 @@ export default {
 </script>
 
 <style scoped>
-.decks-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.deck {
+  display: block;
 }
 
 .decks-list li {
