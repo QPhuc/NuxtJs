@@ -2,7 +2,7 @@
   <section>
     <div class="r">
       <div class="ct text_center">
-        <h3>Deck: Learn English</h3>
+        <h3>Deck- {{ $route.params.id }}: Learn English</h3>
         <div class="tools">
           <button class="btn btn_success">Start Now</button>
           <button class="btn btn_primary">Create a card</button>
