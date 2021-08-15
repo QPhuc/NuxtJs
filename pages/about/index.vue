@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h1>Default layout</h1>
-    <Nuxt />
+    <h1>About Page, Hello</h1>
   </div>
 </template>
+
 <script>
 export default {
-
+  layout: 'public'
 }
 </script>
