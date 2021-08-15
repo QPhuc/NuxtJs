@@ -1,11 +1,13 @@
 <template>
   <div>
-    <h1>Default layout</h1>
+    <default-header />
     <Nuxt />
   </div>
 </template>
 <script>
+import DefaultHeader from '../components/DefaultHeader.vue'
 export default {
+  components: { DefaultHeader },
 
 }
 </script>
