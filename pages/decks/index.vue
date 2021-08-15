@@ -50,10 +50,30 @@
         </li>
       </ul>
     </div>
-    <v-modal name="test">
-      <div class="test__body">
-        <h1>Hello text modal</h1>
-        <button class="btn btn_danger" @click.prevent="closeModal">Close Modal</button>
+
+    <!-- Modal -->
+    <v-modal name="CreateDeckModal">
+      <div class="modal__body">
+        <h1>Create a new Deck</h1>
+        <form action>
+          <div class="form_group">
+            <label for>Name:</label>
+            <input class="form_control" type="text" placeholder="Please enter name deck" />
+          </div>
+          <div class="form_group">
+            <label for>Description:</label>
+            <textarea class="form_control" placeholder="Please enter description"></textarea>
+          </div>
+          <div class="form_group">
+            <label for>Thumbnail:</label>
+            <input type="file" />
+            <div class="preview"></div>
+          </div>
+          <div class="form_group d_flex justify_content_end">
+            <button class="btn btn_danger" @click.prevent="closeModal">Close</button>
+            <button class="btn btn_success ml_3" @click.prevent="createModal">Create</button>
+          </div>
+        </form>
       </div>
     </v-modal>
   </div>
@@ -72,10 +92,10 @@ export default {
       this.$router.push(`/decks/${this.deckID}`);
     },
     openModal() {
-      this.$modal.open({ name: 'test' })
+      this.$modal.open({ name: 'CreateDeckModal' })
     },
     closeModal() {
-      this.$modal.close({ name: 'test' })
+      this.$modal.close({ name: 'CreateDeckModal' })
     }
   }
 }
@@ -105,7 +125,7 @@ export default {
   height: auto;
 }
 
-.test__body {
+.modal__body {
   background-color: #fff;
   padding: 2rem;
 }
