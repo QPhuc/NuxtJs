@@ -103,9 +103,9 @@ export default {
       ]
     }
   },
-  validate({ params }) {
-    return /^[0-9]/.test(params.id);
-  },
+  // validate({ params }) {
+  //   return /^[0-9]/.test(params.id);
+  // },
   methods: {
     openModal() {
       this.$modal.open({ name: 'CreateCardModal' })
@@ -131,7 +131,7 @@ section {
 }
 
 .card img {
-  width: 60%;
+  width: 30%;
 }
 
 .modal__body {

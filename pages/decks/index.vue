@@ -8,8 +8,8 @@
       <ul class="decks-list">
         <DeckList
           v-for="deck in decks"
-          :key="deck._id"
-          :id="deck._id"
+          :key="deck.id"
+          :id="deck.id"
           :name="deck.name"
           :description="deck.description"
           :thumbnail="deck.thumbnail"
@@ -40,7 +40,7 @@ export default {
   //       resolve({
   //         decks: [
   //           {
-  //             _id: 1,
+  //             id: 1,
   //             name: 'Learn English',
   //             description:
   //               'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum',
@@ -48,7 +48,7 @@ export default {
   //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU',
   //           },
   //           {
-  //             _id: 2,
+  //             id: 2,
   //             name: 'Learn Chinese',
   //             description:
   //               'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum',
@@ -56,7 +56,7 @@ export default {
   //               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU',
   //           },
   //           {
-  //             _id: 3,
+  //             id: 3,
   //             name: 'Learn Japanese',
   //             description:
   //               'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum',
@@ -87,7 +87,6 @@ export default {
       this.$modal.open({ name: 'CreateDeckModal' })
     },
     onSubmit(deckData) {
-      console.log('s');
       axios.post('https://nuxt-learn-english-default-rtdb.asia-southeast1.firebasedatabase.app/decks.json', deckData)
         .then((data) => { console.log(data); })
         .catch(e => { console.log(e); })
