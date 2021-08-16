@@ -2,7 +2,7 @@
   <section>
     <div class="r">
       <div class="ct text_center">
-        <h3>Deck- {{ $route.params.id }}: Learn English</h3>
+        <h3>Deck- {{ $route.params.id }}: {{ deck.name }}</h3>
         <div class="tools">
           <button class="btn btn_success">Start Now</button>
           <button class="btn btn_primary" @click.prevent="openModal">Create a card</button>
@@ -51,6 +51,21 @@
 import CartList from '@/components/Cards/CardList'
 export default {
   components: { CartList },
+  asyncData(context, callback) {
+    setTimeout(() => {
+      console.log(context);
+      callback(null, {
+        deck: {
+          _id: 1,
+          name: `Learn English by ${context.params.id}`,
+          description:
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU',
+        },
+      })
+    }, 1500);
+  },
   data() {
     return {
       cards: [
