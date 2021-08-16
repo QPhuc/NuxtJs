@@ -9,55 +9,13 @@
         </div>
         <hr class="divide" />
         <div class="r">
-          <div class="c_3">
+          <div class="c_3" v-for="card in cards" :key="card._id">
             <div class="card">
               <div class="front-card">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWli_l1zSfJtucNFLV78ENRXusVSMkHkPX6w&usqp=CAU"
-                  alt="Thumbnail card"
-                />
+                <img :src="card.picture" />
               </div>
               <div class="back-card">
-                <h6>Shop</h6>
-              </div>
-            </div>
-          </div>
-          <div class="c_3">
-            <div class="card">
-              <div class="front-card">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWli_l1zSfJtucNFLV78ENRXusVSMkHkPX6w&usqp=CAU"
-                  alt="Thumbnail card"
-                />
-              </div>
-              <div class="back-card">
-                <h6>Shop</h6>
-              </div>
-            </div>
-          </div>
-          <div class="c_3">
-            <div class="card">
-              <div class="front-card">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWli_l1zSfJtucNFLV78ENRXusVSMkHkPX6w&usqp=CAU"
-                  alt="Thumbnail card"
-                />
-              </div>
-              <div class="back-card">
-                <h6>Shop</h6>
-              </div>
-            </div>
-          </div>
-          <div class="c_3">
-            <div class="card">
-              <div class="front-card">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWli_l1zSfJtucNFLV78ENRXusVSMkHkPX6w&usqp=CAU"
-                  alt="Thumbnail card"
-                />
-              </div>
-              <div class="back-card">
-                <h6>Shop</h6>
+                <h6>{{ card.keyword }}</h6>
               </div>
             </div>
           </div>
@@ -95,6 +53,37 @@
 
 <script>
 export default {
+  data() {
+    return {
+      cards: [
+        {
+          _id: 1,
+          picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWli_l1zSfJtucNFLV78ENRXusVSMkHkPX6w&usqp=CAU',
+          keyword: 'Shop'
+        },
+        {
+          _id: 2,
+          picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWli_l1zSfJtucNFLV78ENRXusVSMkHkPX6w&usqp=CAU',
+          keyword: 'Shop'
+        },
+        {
+          _id: 3,
+          picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWli_l1zSfJtucNFLV78ENRXusVSMkHkPX6w&usqp=CAU',
+          keyword: 'Shop'
+        },
+        {
+          _id: 4,
+          picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWli_l1zSfJtucNFLV78ENRXusVSMkHkPX6w&usqp=CAU',
+          keyword: 'Shop'
+        },
+        {
+          _id: 5,
+          picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWli_l1zSfJtucNFLV78ENRXusVSMkHkPX6w&usqp=CAU',
+          keyword: 'Shop'
+        },
+      ]
+    }
+  },
   validate({ params }) {
     return /^[0-9]/.test(params.id);
   },
