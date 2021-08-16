@@ -6,17 +6,14 @@
         <button class="btn btn_success" @click.prevent="openModal">Create a Deck</button>
       </div>
       <ul class="decks-list">
-        <li v-for="deck in decks" :key="deck._id">
-          <nuxt-link class="deck" :to="`/decks/${deck._id}`">
-            <div class="card deck-card">
-              <img :src="deck.thumbnail" :alt="`Thumbnail of ${deck.name}`" />
-              <div class="card_body">
-                <h3>{{ deck.name }}</h3>
-                <p>{{ deck.description }}</p>
-              </div>
-            </div>
-          </nuxt-link>
-        </li>
+        <DeckList
+          v-for="deck in decks"
+          :key="deck._id"
+          :id="deck._id"
+          :name="deck.name"
+          :description="deck.description"
+          :thumbnail="deck.thumbnail"
+        />
       </ul>
     </div>
 
@@ -49,29 +46,37 @@
 </template>
 
 <script>
+import DeckList from '@/components/Decks/DeckList'
 export default {
+  components: { DeckList },
   data() {
     return {
       decks: [
         {
           _id: 1,
           name: 'Learn English',
-          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum',
-          thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU'
+          description:
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU',
         },
         {
           _id: 2,
           name: 'Learn Chinese',
-          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum',
-          thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU'
+          description:
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU',
         },
         {
           _id: 3,
           name: 'Learn Japanese',
-          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum',
-          thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU'
+          description:
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum',
+          thumbnail:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU',
         },
-      ]
+      ],
     }
   },
   methods: {
@@ -80,12 +85,12 @@ export default {
     },
     closeModal() {
       this.$modal.close({ name: 'CreateDeckModal' })
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style scoped>
+<style>
 .deck {
   display: block;
 }

@@ -9,16 +9,12 @@
         </div>
         <hr class="divide" />
         <div class="r">
-          <div class="c_3" v-for="card in cards" :key="card._id">
-            <div class="card">
-              <div class="front-card">
-                <img :src="card.picture" />
-              </div>
-              <div class="back-card">
-                <h6>{{ card.keyword }}</h6>
-              </div>
-            </div>
-          </div>
+          <CartList
+            v-for="card in cards"
+            :key="card._id"
+            :keyword="card.keyword"
+            :picture="card.picture"
+          />
         </div>
       </div>
     </div>
@@ -52,7 +48,9 @@
 </template>
 
 <script>
+import CartList from '@/components/Cards/CardList'
 export default {
+  components: { CartList },
   data() {
     return {
       cards: [
@@ -98,7 +96,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 section {
   padding-top: 3rem;
 }
