@@ -92,6 +92,10 @@ export default {
       decks: [],
     }
   },
+  created() {
+    this.$store.dispatch('setDecks', this.decks);
+    console.log(this.$store.getters.decks);
+  },
   methods: {
     openModal() {
       this.$modal.open({ name: 'CreateDeckModal' })
