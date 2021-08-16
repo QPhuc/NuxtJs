@@ -49,34 +49,41 @@
 import DeckList from '@/components/Decks/DeckList'
 export default {
   components: { DeckList },
+  asyncData(context, callback) {
+    setTimeout(() => {
+      callback(null, {
+        decks: [
+          {
+            _id: 1,
+            name: 'Learn English',
+            description:
+              'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum',
+            thumbnail:
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU',
+          },
+          {
+            _id: 2,
+            name: 'Learn Chinese',
+            description:
+              'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum',
+            thumbnail:
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU',
+          },
+          {
+            _id: 3,
+            name: 'Learn Japanese',
+            description:
+              'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum',
+            thumbnail:
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU',
+          },
+        ]
+      })
+    }, 1500);
+  },
   data() {
     return {
-      decks: [
-        {
-          _id: 1,
-          name: 'Learn English',
-          description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum',
-          thumbnail:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU',
-        },
-        {
-          _id: 2,
-          name: 'Learn Chinese',
-          description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum',
-          thumbnail:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU',
-        },
-        {
-          _id: 3,
-          name: 'Learn Japanese',
-          description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum',
-          thumbnail:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU',
-        },
-      ],
+      decks: [],
     }
   },
   methods: {
