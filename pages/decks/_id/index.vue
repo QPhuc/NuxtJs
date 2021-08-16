@@ -51,20 +51,26 @@
 import CartList from '@/components/Cards/CardList'
 export default {
   components: { CartList },
-  asyncData(context, callback) {
-    setTimeout(() => {
-      console.log(context);
-      callback(null, {
-        deck: {
-          _id: 1,
-          name: `Learn English by ${context.params.id}`,
-          description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum',
-          thumbnail:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU',
-        },
-      })
-    }, 1500);
+  asyncData(context) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve({
+          deck: {
+            _id: 1,
+            name: `Learn English by ${context.params.id}`,
+            description:
+              'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum',
+            thumbnail:
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU',
+          },
+        })
+      }, 1500);
+    }).then(data => {
+      return data
+    }).catch(e => {
+      context.error(e)
+    })
+
   },
   data() {
     return {
