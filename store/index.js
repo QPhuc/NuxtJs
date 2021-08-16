@@ -11,6 +11,9 @@ const createStore = () => {
       }
     },
     actions: {
+      nuxtServerInit(vuexContent, context) {
+
+      },
       setDecks(vuexContext, decks) {
         vuexContext.commit('setDecks', decks)
       }
