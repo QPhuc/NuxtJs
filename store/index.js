@@ -8,6 +8,14 @@ const createStore = () => {
       decks: [],
     },
     mutations: {
+      addDeck(state, newDeck) {
+        state.decks.push(newDeck);
+      },
+      editDeck(state, editDeck) {
+        const deckIndex = state.decks.findIndex(deck => deck.id === editDeck.id);
+
+        state.decks[deckIndex] = editDeck;
+      },
       setDecks(state, decks) {
         state.decks = decks;
       }
@@ -23,6 +31,24 @@ const createStore = () => {
 
             vuexContent.commit('setDecks', decksArr);
           });
+      },
+      addDeck(vuexContext, deckData) {
+        return axios
+          .post('https://nuxt-learn-english-default-rtdb.asia-southeast1.firebasedatabase.app/decks.json', deckData)
+          .then((result) => {
+            vuexContext.commit('addDeck', { ...deckData, id: result.data.name })
+          })
+          .catch(e => { console.log(e); })
+      },
+      editDeck(vuexContent, deckData) {
+        const deckId = deckData.id;
+        delete deckData.id;
+
+        return axios.put(`https://nuxt-learn-english-default-rtdb.asia-southeast1.firebasedatabase.app/decks/${deckId}.json`, deckData)
+          .then((result) => {
+            vuexContent.commit('editDeck', { ...result.data, id: deckId })
+          })
+          .catch(e => { console.log(e); })
       },
       setDecks(vuexContext, decks) {
         vuexContext.commit('setDecks', decks)
