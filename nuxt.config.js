@@ -1,10 +1,8 @@
-import colors from 'vuetify/es5/util/colors'
-
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - nuxtjs',
-    title: 'nuxtjs',
+    // titleTemplate: 'TQP', //title chung
+    title: 'TQP', // title tung trang
     htmlAttrs: {
       lang: 'en'
     },

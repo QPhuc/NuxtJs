@@ -23,6 +23,9 @@
 import DeckList from '@/components/Decks/DeckList'
 export default {
   components: { DeckList },
+  head: {
+    title: 'Decks | TQP',
+  },
   // fetch(context) {
   //   return new Promise((resolve, reject) => {
   //     setTimeout(() => {
