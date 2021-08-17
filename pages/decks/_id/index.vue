@@ -55,7 +55,7 @@ import CartList from '@/components/Cards/CardList'
 export default {
   components: { CartList },
   asyncData(context) {
-    return axios.get(`https://nuxt-learn-english-default-rtdb.asia-southeast1.firebasedatabase.app/decks/${context.params.id}.json`)
+    return axios.get(`${process.env.baseApiUrl}/decks/${context.params.id}.json`)
       .then((response) => {
         return {
           deck: response.data

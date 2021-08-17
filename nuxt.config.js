@@ -56,5 +56,10 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    baseApiUrl: process.env.BASE_API_URL || 'https://nuxt-learn-english-default-rtdb.asia-southeast1.firebasedatabase.app'
   }
 }

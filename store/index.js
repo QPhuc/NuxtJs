@@ -34,7 +34,7 @@ const createStore = () => {
       },
       addDeck(vuexContext, deckData) {
         return axios
-          .post('https://nuxt-learn-english-default-rtdb.asia-southeast1.firebasedatabase.app/decks.json', deckData)
+          .post(process.env.baseApiUrl + '/decks.json', deckData)
           .then((result) => {
             vuexContext.commit('addDeck', { ...deckData, id: result.data.name })
           })
@@ -44,7 +44,7 @@ const createStore = () => {
         const deckId = deckData.id;
         delete deckData.id;
 
-        return axios.put(`https://nuxt-learn-english-default-rtdb.asia-southeast1.firebasedatabase.app/decks/${deckId}.json`, deckData)
+        return axios.put(`${process.env.baseApiUrl}/decks/${deckId}.json`, deckData)
           .then((result) => {
             vuexContent.commit('editDeck', { ...result.data, id: deckId })
           })

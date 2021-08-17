@@ -79,7 +79,7 @@ export default {
       this.$modal.open({ name: 'DeckFormModal' })
     },
     onSubmit(deckData) {
-      axios.post('https://nuxt-learn-english-default-rtdb.asia-southeast1.firebasedatabase.app/decks.json', deckData)
+      axios.post(process.env.baseApiUrl + '/decks.json', deckData)
         .then((data) => { console.log(data); })
         .catch(e => { console.log(e); })
     }
