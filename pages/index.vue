@@ -1,5 +1,6 @@
 <template>
   <div class="ct">
+    <event-alert />
     <div class="banner">
       <div class="thumbnail-banner"></div>
     </div>
