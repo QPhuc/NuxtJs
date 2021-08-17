@@ -48,7 +48,9 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: process.env.BASE_API_URL || 'https://nuxt-learn-english-default-rtdb.asia-southeast1.firebasedatabase.app'
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {

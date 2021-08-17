@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 import Vuex from 'vuex'
 
 const createStore = () => {
@@ -22,21 +20,24 @@ const createStore = () => {
     },
     actions: {
       nuxtServerInit(vuexContent, context) {
-        return axios.get('https://nuxt-learn-english-default-rtdb.asia-southeast1.firebasedatabase.app/decks.json')
-          .then((response) => {
+        return context.app.$axios
+          .$get('https://nuxt-learn-english-default-rtdb.asia-southeast1.firebasedatabase.app/decks.json')
+          .then((data) => {
             const decksArr = [];
-            for (const key in response.data) {
-              decksArr.push({ ...response.data[key], id: key });
+            for (const key in data) {
+              decksArr.push({ ...data[key], id: key });
             }
 
             vuexContent.commit('setDecks', decksArr);
-          });
+          }).catch(e => {
+            context.error(e)
+          })
       },
       addDeck(vuexContext, deckData) {
-        return axios
-          .post(process.env.baseApiUrl + '/decks.json', deckData)
-          .then((result) => {
-            vuexContext.commit('addDeck', { ...deckData, id: result.data.name })
+        return this.$axios
+          .$post(process.env.baseApiUrl + '/decks.json', deckData)
+          .then((data) => {
+            vuexContext.commit('addDeck', { ...deckData, id: data.name })
           })
           .catch(e => { console.log(e); })
       },
@@ -44,9 +45,10 @@ const createStore = () => {
         const deckId = deckData.id;
         delete deckData.id;
 
-        return axios.put(`${process.env.baseApiUrl}/decks/${deckId}.json`, deckData)
-          .then((result) => {
-            vuexContent.commit('editDeck', { ...result.data, id: deckId })
+        return this.$axios
+          .$put(`${process.env.baseApiUrl}/decks/${deckId}.json`, deckData)
+          .then((data) => {
+            vuexContent.commit('editDeck', { ...data, id: deckId })
           })
           .catch(e => { console.log(e); })
       },
