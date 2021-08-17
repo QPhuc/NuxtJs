@@ -16,24 +16,13 @@
         />
       </ul>
     </div>
-
-    <!-- Modal -->
-    <v-modal name="CreateDeckModal">
-      <div class="modal__body">
-        <h1>Create a new Deck</h1>
-        <DeckForm @submit="onSubmit" />
-      </div>
-    </v-modal>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-
 import DeckList from '@/components/Decks/DeckList'
-import DeckForm from '@/components/Decks/DeckForm'
 export default {
-  components: { DeckList, DeckForm },
+  components: { DeckList },
   // fetch(context) {
   //   return new Promise((resolve, reject) => {
   //     setTimeout(() => {
@@ -84,7 +73,7 @@ export default {
   },
   methods: {
     openModal() {
-      this.$modal.open({ name: 'CreateDeckModal' })
+      this.$modal.open({ name: 'DeckFormModal' })
     },
     onSubmit(deckData) {
       axios.post('https://nuxt-learn-english-default-rtdb.asia-southeast1.firebasedatabase.app/decks.json', deckData)

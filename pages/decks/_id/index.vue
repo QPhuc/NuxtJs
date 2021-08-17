@@ -5,7 +5,8 @@
         <h3>Deck: {{ deck.name }}</h3>
         <div class="tools">
           <button class="btn btn_success">Start Now</button>
-          <button class="btn btn_primary" @click.prevent="openModal">Create a card</button>
+          <button class="btn btn_primary" @click.prevent="openModal('DeckFormModal')">Create a card</button>
+          <button class="btn btn_warning" @click.prevent="openModal('DeckFormModal')">Edit Deck</button>
         </div>
         <hr class="divide" />
         <div class="r">
@@ -98,17 +99,25 @@ export default {
   //   return /^[0-9]/.test(params.id);
   // },
   methods: {
-    openModal() {
-      this.$modal.open({ name: 'CreateCardModal' })
-    },
     closeModal() {
       this.$modal.close({ name: 'CreateCardModal' })
-    }
+    },
+    openModal(name) {
+      if (name === 'CreateCardModal') {
+        this.$modal.open({ name: 'DeckFormModal' })
+      } else if (name === 'DeckFormModal') {
+        this.$modal.open({ name: 'DeckFormModal', payload: { ...this.deck, id: this.$route.params.id } })
+      }
+    },
   }
 }
 </script>
 
 <style>
+section {
+  padding-top: 3rem;
+}
+
 section {
   padding-top: 3rem;
 }
@@ -122,11 +131,10 @@ section {
 }
 
 .card img {
-  width: 30%;
+  width: 60%;
 }
 
 .modal__body {
   background-color: #fff;
   padding: 2rem;
 }
-</style>
