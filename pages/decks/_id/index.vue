@@ -2,7 +2,7 @@
   <section>
     <div class="r">
       <div class="ct text_center">
-        <h3>Deck- {{ $route.params.id }}: {{ deck.name }}</h3>
+        <h3>Deck: {{ deck.name }}</h3>
         <div class="tools">
           <button class="btn btn_success">Start Now</button>
           <button class="btn btn_primary" @click.prevent="openModal">Create a card</button>
@@ -48,29 +48,20 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 import CartList from '@/components/Cards/CardList'
 export default {
   components: { CartList },
   asyncData(context) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve({
-          deck: {
-            _id: 1,
-            name: `Learn English by ${context.params.id}`,
-            description:
-              'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum',
-            thumbnail:
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsK6sNyy6Ds6Q-nFnOCBVoK_IaCLJEXeyI6w&usqp=CAU',
-          },
-        })
-      }, 1500);
-    }).then(data => {
-      return data
-    }).catch(e => {
-      context.error(e)
-    })
-
+    return axios.get(`https://nuxt-learn-english-default-rtdb.asia-southeast1.firebasedatabase.app/decks/${context.params.id}.json`)
+      .then((response) => {
+        return {
+          deck: response.data
+        }
+      }).catch(e => {
+        context.error(e)
+      })
   },
   data() {
     return {
