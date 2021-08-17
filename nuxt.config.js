@@ -18,6 +18,8 @@ export default {
     ]
   },
 
+  loading: { color: 'red' },
+  // loading: false,
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '~/assets/rhpteam.min.css',
