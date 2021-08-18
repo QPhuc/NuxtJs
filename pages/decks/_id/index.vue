@@ -52,7 +52,7 @@
 import CartList from '@/components/Cards/CardList'
 export default {
   components: { CartList },
-  middleware: 'auth',
+  middleware: ['check-auth', 'auth'],
   asyncData(context) {
     return context.app.$axios
       .$get(`${process.env.baseApiUrl}/decks/${context.params.id}.json`)
