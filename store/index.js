@@ -4,6 +4,7 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       decks: [],
+      token: null,
     },
     mutations: {
       addDeck(state, newDeck) {
@@ -16,6 +17,9 @@ const createStore = () => {
       },
       setDecks(state, decks) {
         state.decks = decks;
+      },
+      setToken(state, token) {
+        state.token = token;
       }
     },
     actions: {
@@ -40,6 +44,28 @@ const createStore = () => {
             vuexContext.commit('addDeck', { ...deckData, id: data.name })
           })
           .catch(e => { console.log(e); })
+      },
+      authenticateUser(vuexContext, credentials) {
+        return new Promise((resolve, reject) => {
+          // check login or register
+          let authUrlApi = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.fbApiKey}`;
+
+          if (!credentials.isLogin) {
+            authUrlApi = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.fbApiKey}`;
+          }
+          // call api to firebase
+          this.$axios.$post(authUrlApi, {
+            email: credentials.email,
+            password: credentials.password,
+            returnSecureToken: true,
+          })
+            .then(result => {
+              vuexContext.commit('setToken', result.idToken)
+              resolve({ success: true })
+            }).catch(error => {
+              reject(error.response)
+            })
+        })
       },
       editDeck(vuexContent, deckData) {
         const deckId = deckData.id;

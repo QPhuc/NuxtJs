@@ -1,7 +1,5 @@
 <template>
   <div>
-    <error-alert v-if="error" />
-    <h4 v-if="error">{{ error }}</h4>
     <section class="page">
       <div class="card card-form">
         <div class="card_body">
@@ -61,7 +59,6 @@ export default {
       email: '',
       password: '',
       rePassword: '',
-      error: null,
     }
   },
   methods: {
@@ -70,16 +67,13 @@ export default {
     },
     onSubmit() {
       const validPassword = this.checkValidPassword();
-      this.error = null;
       if (validPassword) {
-        // call api
-        this.$axios.$post(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.fbApiKey}`, {
+        this.$store.dispatch('authenticateUser', {
           email: this.email,
           password: this.password,
-          returnSecureToken: true,
+        }).then((result) => {
+          if (result.success) this.$router.push('/decks')
         })
-          .then(result => console.log(result))
-          .catch(e => this.error = e)
       }
       else {
         console.log('Password is not valid.');

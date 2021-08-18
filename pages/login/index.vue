@@ -1,7 +1,5 @@
 <template>
   <div>
-    <error-alert v-if="error" />
-    <h4 v-if="error">{{ error }}</h4>
     <section class="page">
       <div class="card card-form">
         <div class="card_body">
@@ -50,21 +48,20 @@ export default {
     return {
       email: '',
       password: '',
-      error: null,
+      isLogin: true,
     }
   },
   methods: {
     onSubmit() {
-      this.error = null;
-      // call api
-      this.$axios.$post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.fbApiKey}`, {
+      this.$store.dispatch('authenticateUser', {
         email: this.email,
         password: this.password,
-        returnSecureToken: true,
+        isLogin: this.isLogin
+      }).then((result) => {
+        if (result.success) this.$router.push('/decks')
+      }).catch(error => {
+        console.log(error);
       })
-        .then(result => console.log(result))
-        .then(this.$router.push('/settings'))
-        .catch(e => this.error = e)
     }
   }
 }
