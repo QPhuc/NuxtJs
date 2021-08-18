@@ -17,6 +17,12 @@
   </div>
 </template>
 
+<script>
+export default {
+  middleware: 'auth'
+}
+</script>
+
 <style>
 .page {
   display: flex;

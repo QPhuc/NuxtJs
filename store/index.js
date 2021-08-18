@@ -85,6 +85,9 @@ const createStore = () => {
     getters: {
       decks(state) {
         return state.decks;
+      },
+      isAuthenticate(state) {
+        return state.token != null
       }
     },
   })

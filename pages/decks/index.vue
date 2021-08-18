@@ -23,6 +23,7 @@
 import DeckList from '@/components/Decks/DeckList'
 export default {
   components: { DeckList },
+  middleware: 'auth',
   head: {
     title: 'Decks | TQP',
   },
