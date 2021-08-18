@@ -41,6 +41,12 @@
               <button type="submit" class="btn btn_success btn-submit">Register</button>
             </div>
           </form>
+          <div class="other text_center">
+            <span>
+              Have your account?
+              <nuxt-link to="/login" tag="a">Login here</nuxt-link>
+            </span>
+          </div>
         </div>
       </div>
     </section>
