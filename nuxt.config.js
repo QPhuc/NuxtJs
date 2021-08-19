@@ -67,6 +67,6 @@ export default {
     fbApiKey: 'AIzaSyDif9bxl_t-dIqBQ6RbWKNWhITmlWP_Mzo',
   },
   router: {
-    middleware: 'router-log'
+    // middleware: 'router-log'
   }
 }

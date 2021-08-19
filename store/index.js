@@ -24,7 +24,7 @@ const createStore = () => {
       },
       setToken(state, token) {
         state.token = token;
-      }
+      },
     },
     actions: {
       nuxtServerInit(vuexContent, context) {
@@ -106,7 +106,10 @@ const createStore = () => {
           const tokenKey = req.headers.cookie.split(';').find(c => c.trim().startsWith('token='))
           const tokenExpirationKey = req.headers.cookie.split(';').find(c => c.trim().startsWith('tokenExpiration='))
 
-          if (!tokenKey || !tokenExpirationKey) return false
+          if (!tokenKey || !tokenExpirationKey) {
+            vuexContext.dispatch('logout');
+            return false;
+          }
 
           token = tokenKey.split('=')[1]
           tokenExpiration = tokenExpirationKey.split('=')[1]
@@ -114,11 +117,23 @@ const createStore = () => {
           token = localStorage.getItem('token');
           tokenExpiration = localStorage.getItem('tokenExpiration');
 
-          if (new Date().getTime() > tokenExpiration || !token) return false;
+          if (new Date().getTime() > tokenExpiration || !token) {
+            vuexContext.dispatch('logout');
+            return false;
+          }
+
+
         }
 
         vuexContext.dispatch('setLogoutTimer', tokenExpiration - new Date().getTime())
         vuexContext.commit('setToken', token)
+      },
+      logout(vuexContext) {
+        vuexContext.commit('clearToken');
+        Cookie.remove('token');
+        Cookie.remove('tokenExpiration');
+        localStorage.removeItem('token');
+        localStorage.removeItem('tokenExpiration');
       }
     },
     getters: {
